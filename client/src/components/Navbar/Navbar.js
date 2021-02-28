@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, BrowserRouter, Switch, Route } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { AppBar, Avatar, Toolbar, Typography, Button } from '@material-ui/core'
 import useStyles from './styles'
 import memories from '../../images/memories.png'
@@ -14,7 +14,8 @@ const Navbar = () => {
                 <Typography component={Link} to='/' className = {classes.heading} variant='h2' align='center'>Memories</Typography>
                 <img className = {classes.image} src={memories} alt='memories' height='60'></img>
             </div>
-            <Toolbar classes={classes.toolbar}>
+            {/* <Toolbar classes={classes.toolbar}> */}
+            <Toolbar>
                 {user ? (
                     <div className={classes.profile}>
                         <Avatar className={classes.purple} alt={user.result.name} src={user.result.imageUrl}>{user.result.name.charAt(0)}</Avatar>
