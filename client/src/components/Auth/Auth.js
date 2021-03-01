@@ -6,12 +6,14 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Input from './Input'
 import Icon from './Icon'
 import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 
 const Auth = () => {
     const classes = useStyles()
     const [isSignup, setIsSignUp] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
     const dispatch = useDispatch()
+    const history = useHistory()
 
     const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword)
 
@@ -31,17 +33,15 @@ const Auth = () => {
     const googleSuccess = async (res) => {
         const result = res?.profileObj
         const token = res?.tokenId
-        // console.log(result)
-        console.log(token)
-        // try {
-        //     dispatch({type: 'AUTH', data: {result, token}})
-        // } catch (error) {
-        //     console.log(error)
-        // }
+        try {
+            dispatch({type: 'AUTH', data: {result, token}})
+            history.push('/')
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const googleFailure = async (error) => {
-        // console.log(error)
         console.log('Google Sign In unsuccessful. Try again later')
     }
 
