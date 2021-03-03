@@ -4,6 +4,7 @@ import mongoose from 'mongoose'
 import cors from 'cors'
 
 import postRouts from './routes/posts.js'
+import userRouts from './routes/users.js'
 
 const app = express()
 
@@ -12,6 +13,7 @@ app.use(bodyParser.urlencoded({ limit: '30mb', extended: true}))
 
 app.use(cors())
 app.use('/posts', postRouts)
+app.use('/user', userRouts)
 
 const CONNECTION_URL = 'mongodb+srv://dmytroDBuser:dmytro1128@cluster0.gyvhn.mongodb.net/<dbname>?retryWrites=true&w=majority'
 //mongodb+srv://<username>:<password>@cluster0.gyvhn.mongodb.net/<dbname>?retryWrites=true&w=majority
