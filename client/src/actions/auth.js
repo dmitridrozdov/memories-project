@@ -1,24 +1,21 @@
 import { AUTH } from '../constants/actionTypes'
 import * as api from '../api'
-import { useHistory } from 'react-router-dom'
 
-
-
-export const signin = (post) => async(dispatch) => {
+export const signin = (formData, router) => async(dispatch) => {
     try {
-        //login the user
-        const history = useHistory()
-        history.push('/')
+        const { data } = await api.signIn(formData)
+        dispatch({ type: AUTH, data})
+        router.push('/')
     } catch(error) {
         console.log(error)
     }   
 }
 
-export const signup = (formData, history) => async(dispatch) => {
+export const signup = (formData, router) => async(dispatch) => {
     try {
-        //sign up the user
-        const history = useHistory()
-        history.push('/')
+        const { data } = await api.signUp(formData)
+        dispatch({ type: AUTH, data})
+        router.push('/')
     } catch(error) {
         console.log(error)
     }   
